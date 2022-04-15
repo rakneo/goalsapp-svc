@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.logging.Logger;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/goal")
 public class GoalController {
@@ -56,7 +58,7 @@ public class GoalController {
             logger.info("Page: " + page + " Size: " + size);
 
             List<GoalModel> goals;
-            Pageable pageable = PageRequest.of(page, size);
+            Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC,"createdDateTime"));
 
             Page<GoalModel> goalPage = goalDAO.findAll(pageable);
             goals = goalPage.getContent();
