@@ -1,14 +1,15 @@
 version: "3"
 services:
-  mongodb:
+  db:
     image: mongo
     container_name: "mongodb"
     ports:
       - 27017:27017
-    command: --smallfiles
   app:
     build: .
     ports:
       - 8080:8080
+    environment:
+      MONGO_URL: db
     links:
       - mongodb
