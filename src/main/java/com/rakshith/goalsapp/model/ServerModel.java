@@ -7,20 +7,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "goals")
-public class GoalModel {
+
+@Document(collection = "servers")
+public class ServerModel {
     @Id
     private String id;
-    private String goalName;
-    private String description;
-    private Date dueDateTime;
-
+    private String name;
+    private String language;
+    private String framework;
     @CreatedDate
     private Date createdDateTime;
     @LastModifiedDate
     private Date lastModifiedDateTime;
 
-    public GoalModel() {
+    public ServerModel() {
+    }
+
+    public ServerModel(String name, String language, String framework) {
+        this.name = name;
+        this.language = language;
+        this.framework = framework;
     }
 
     public String getId() {
@@ -31,34 +37,33 @@ public class GoalModel {
         this.id = id;
     }
 
-    public String getGoalName() {
-        return goalName;
+    public String getName() {
+        return name;
     }
 
-    public void setGoalName(String goalName) {
-        this.goalName = goalName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public Date getDueDateTime() {
-        return dueDateTime;
+    public String getFramework() {
+        return framework;
     }
 
-    public void setDueDateTime(Date dueDateTime) {
-        this.dueDateTime = dueDateTime;
+    public void setFramework(String framework) {
+        this.framework = framework;
     }
 
     public Date getCreatedDateTime() {
         return createdDateTime;
     }
-
 
     public void setCreatedDateTime(Date createdDateTime) {
         this.createdDateTime = createdDateTime;
@@ -72,16 +77,16 @@ public class GoalModel {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
-
     @Override
     public String toString() {
-        return "GoalModel{" +
+        return "ServerModel{" +
                 "id='" + id + '\'' +
-                ", goalName='" + goalName + '\'' +
-                ", description='" + description + '\'' +
-                ", dueDateTime=" + dueDateTime +
+                ", name='" + name + '\'' +
+                ", language='" + language + '\'' +
+                ", framework=" + framework +
                 ", createdDateTime=" + createdDateTime +
                 ", lastModifiedDateTime=" + lastModifiedDateTime +
                 '}';
     }
+
 }
